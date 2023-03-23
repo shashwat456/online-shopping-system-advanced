@@ -1,0 +1,22 @@
+version: 2.1
+
+jobs:
+  deploy:
+    machine:
+      enabled: true
+    steps:
+      - checkout
+      - add_ssh_keys:
+           fingerprints:
+               - "27:48:da:82:82:46:fb:43:e3:be:e5:8d:99:aa:2c:74" 
+      - run:
+          name: Deploy
+          command: |
+            ssh -o StrictHostKeyChecking=no ubuntu@15.206.72.86 "cd /var/www/html/online-shopping && git pull origin master"
+workflows:
+  build-and-deploy:
+    jobs:
+      - deploy:
+          filters:
+            branches:
+              only: master # only deploy on the main branch
