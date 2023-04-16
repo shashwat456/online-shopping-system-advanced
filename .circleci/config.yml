@@ -16,7 +16,7 @@ jobs:
       - run:
           name: Deploy
           command: |
-            ssh -o StrictHostKeyChecking=no ubuntu@13.235.134.107 "cd /var/www/html/online-shopping && git pull origin slave" 
+            ssh -o StrictHostKeyChecking=no ubuntu@3.108.135.33 "cd /var/www/html/online-shopping && git pull origin slave" 
 workflows:
   build-and-deploy:
     jobs:
