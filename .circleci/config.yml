@@ -16,11 +16,11 @@ jobs:
 workflows:
   build-and-deploy:
     jobs:
-      - deploy:
-          filters:
-            branches:
-              only: slave # only deploy on the main branch
       - Hold-for-Approval:
           type: approval
           requires:
             - deploy
+      - deploy:
+          filters:
+            branches:
+              only: slave # only deploy on the main branch
