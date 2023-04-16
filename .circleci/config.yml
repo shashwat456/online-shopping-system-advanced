@@ -39,4 +39,4 @@ workflows:
             - hold-for-approval
           filters:
             branches:
-              only: slave # only deploy on the slave branch
+              only: slave # only deploy on the slave 
