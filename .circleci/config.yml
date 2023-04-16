@@ -9,6 +9,11 @@ jobs:
           name: Deploy
           command: |
             ssh -o StrictHostKeyChecking=no ubuntu@13.235.134.107 "cd /var/www/html/online-shopping && git pull origin slave"
+    steps:
+      - run:
+          name: Approval Complete
+          command: |
+            echo 'The work is now complete.'      
 workflows:
   build-and-deploy:
     jobs:
@@ -16,3 +21,10 @@ workflows:
           filters:
             branches:
               only: master # only deploy on the main branch
+      - Hold-for-Approval:
+          type: approval
+          requires:
+            - deploy
+      - Now-Complete:
+          requires:
+            - Hold-for-Approval     
