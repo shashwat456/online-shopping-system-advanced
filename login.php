@@ -1,6 +1,6 @@
 <?php
 include "db.php";
-
+echo "hello brother";
 session_start();
 
 #Login script is begin here
