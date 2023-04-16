@@ -1,14 +1,16 @@
 version: 2.1
 
 jobs:
-  deploy:
-    machine:
-      enabled: true
+  Hold-for-Approval:
     steps:
       - run:
           name: Approval Complete
           command: |
-            echo 'The work is now complete.'    
+            echo 'The work is now started.'	
+  deploy:
+    machine:
+      enabled: true
+    steps:    
       - run:
           name: Deploy
           command: |
