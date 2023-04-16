@@ -20,15 +20,11 @@ workflows:
       - deploy:
           filters:
             branches:
-<<<<<<< HEAD
-              only: master # only deploy on the main branch
+              only: slave # only deploy on the main branch
       - Hold-for-Approval:
           type: approval
           requires:
             - deploy
       - Now-Complete:
           requires:
-            - Hold-for-Approval     
-=======
-              only: slave # only deploy on the main branch
->>>>>>> 98366ff7606499347a2eeda678ad9b91d5224c6f
+            - Hold-for-Approval   
