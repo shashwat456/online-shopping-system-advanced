@@ -25,6 +25,4 @@ workflows:
           type: approval
           requires:
             - deploy
-      - Now-Complete:
-          requires:
-            - Hold-for-Approval   
+
