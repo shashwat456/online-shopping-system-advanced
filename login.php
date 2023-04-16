@@ -1,6 +1,7 @@
 <?php
-include "db.php";
 echo "hello brother";
+include "db.php";
+
 session_start();
 
 #Login script is begin here
