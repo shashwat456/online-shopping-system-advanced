@@ -18,17 +18,14 @@ jobs:
           name: Deploy
           command: |
             ssh -o StrictHostKeyChecking=no ubuntu@13.235.134.107 "cd /var/www/html/online-shopping && git pull origin slave" 
-
 workflows:
   build-and-deploy:
     jobs:
-      - hold-for-approval:
-          filters:
-            branches:
-              only: slave # only wait for approval on the slave branch
-      - deploy:
+      - Hold-for-Approval:
+          type: approval
           requires:
-            - hold-for-approval
+            - deploy
+      - deploy:
           filters:
             branches:
-              only: slave # only deploy on the slave branch
+              only: slave
