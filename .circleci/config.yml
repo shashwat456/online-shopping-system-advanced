@@ -4,15 +4,15 @@ jobs:
   deploy:
     machine:
       enabled: true
-    steps: 
-      - run:
-          name: Deploy
-          command: |
-            ssh -o StrictHostKeyChecking=no ubuntu@13.235.134.107 "cd /var/www/html/online-shopping && git pull origin slave"
+    steps:
       - run:
           name: Approval Complete
           command: |
-            echo 'The work is now complete.'      
+            echo 'The work is now complete.'    
+      - run:
+          name: Deploy
+          command: |
+            ssh -o StrictHostKeyChecking=no ubuntu@13.235.134.107 "cd /var/www/html/online-shopping && git pull origin slave"      
 workflows:
   build-and-deploy:
     jobs:
@@ -24,4 +24,7 @@ workflows:
           type: approval
           requires:
             - deploy
+      - Now-Complete:
+          requires:
+            - Hold-for-Approval
 
