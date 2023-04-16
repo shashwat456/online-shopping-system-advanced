@@ -1,5 +1,4 @@
 <?php
-echo "hello brother";
 include "db.php";
 
 session_start();
