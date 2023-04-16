@@ -1,14 +1,6 @@
 version: 2.1
 
 jobs:
-  hold-for-approval:
-    machine:
-      enabled: true
-    steps:
-      - run:
-          name: Wait for Approval
-          command: |
-            echo "Hold for Approval"
   deploy:
     machine:
       enabled: true
@@ -16,15 +8,11 @@ jobs:
       - run:
           name: Deploy
           command: |
-            ssh -o StrictHostKeyChecking=no ubuntu@3.108.135.33 "cd /var/www/html/online-shopping && git pull origin slave" 
+            ssh -o StrictHostKeyChecking=no ubuntu@15.206.72.86 "cd /var/www/html/php-website && git pull origin master"
 workflows:
   build-and-deploy:
     jobs:
-      - hold-for-approval:
-         type: approval
       - deploy:
-          requires:
-            - hold-for-approval
           filters:
             branches:
-              only: slave # only deploy on the slave branch
+              only: master # only deploy on the main branch
