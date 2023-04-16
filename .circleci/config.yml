@@ -28,15 +28,18 @@ jobs:
 workflows:
   build-and-deploy:
     jobs:
-	  - deploy-for-master:
+      - deploy-for-master:
           filters:
             branches:
-              only: master # only deploy on the main branch
+              only: master
       - hold-for-approval:
-         type: approval
+          type: approval
+          filters:
+            branches:
+              only: slave
       - deploy-for-slave:
           requires:
             - hold-for-approval
           filters:
             branches:
-              only: slave # only deploy on the slave 
+              only: slave
